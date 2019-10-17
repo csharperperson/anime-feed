@@ -1,4 +1,4 @@
-# server
+# anime-db
 
 > 
 
@@ -14,7 +14,7 @@ Getting up and running is as easy as 1, 2, 3.
 2. Install your dependencies
 
     ```
-    cd path/to/server
+    cd path/to/anime-db
     npm install
     ```
 

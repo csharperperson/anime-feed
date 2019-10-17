@@ -9,7 +9,7 @@
   "authentication": {
     "entity": "user",
     "service": "users",
-    "secret": "OCGsaiQgK9zUQo9o3tYxiwOjOEY=",
+    "secret": "xMl56/6S8Hv+Mb/VwZO9sGC88s8=",
     "authStrategies": [
       "jwt",
       "local"
@@ -29,6 +29,11 @@
     },
     "oauth": {
       "redirect": "/",
+      "auth0": {
+        "key": "<auth0 oauth key>",
+        "secret": "<auth0 oauth secret>",
+        "subdomain": "<auth0 subdomain>"
+      },
       "google": {
         "key": "<google oauth key>",
         "secret": "<google oauth secret>",
@@ -44,5 +49,5 @@
       }
     }
   },
-  "mongodb": "mongodb://localhost:27017/animeDb"
+  "mongodb": "mongodb://localhost:27017/anime_db"
 }
