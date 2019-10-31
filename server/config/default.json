@@ -49,5 +49,5 @@
       }
     }
   },
-  "mongodb": "mongodb://localhost:27017/anime_db"
+  "mongodb": "mongodb://localhost:27017/animeDb"
 }

@@ -9,6 +9,8 @@ module.exports = function (app) {
     email: {type: String, unique: true, lowercase: true},
     password: { type: String },
   
+    firstName: { type: String },
+    lastName: { type: String },
   
     auth0Id: { type: String },
   
@@ -20,5 +22,5 @@ module.exports = function (app) {
     timestamps: true
   });
 
-  return mongooseClient.model('users', users);
+  return mongooseClient.model('users', users, 'users');
 };

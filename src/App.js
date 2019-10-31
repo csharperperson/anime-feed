@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Login from './components/login/Login'
+import AuthWrapper from './components/authwrapper/AuthWrapper'
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Login />
+        <AuthWrapper />
       </div>
     )
   }
