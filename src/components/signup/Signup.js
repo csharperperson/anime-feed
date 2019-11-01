@@ -31,8 +31,16 @@ class Signup extends React.Component {
 
         return client.service('users')
             .create({ firstName, lastName, email, password })
-            .catch(error => console.log(error))
-            .then(console.log('user created'));
+            .then(() => this.login());
+    }
+
+    login() {
+        const { email, password } = this.state;
+
+        return client.authenticate({
+            strategy: 'local',
+            email, password
+        }).catch(error => this.setState({ error }));
     }
 
     render() {

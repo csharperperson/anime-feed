@@ -9,14 +9,14 @@
   "authentication": {
     "entity": "user",
     "service": "users",
-    "secret": "xMl56/6S8Hv+Mb/VwZO9sGC88s8=",
+    "secret": "SECRET",
     "authStrategies": [
       "jwt",
       "local"
     ],
     "jwtOptions": {
       "header": {
-        "typ": "access"
+        "type": "access"
       },
       "audience": "https://yourdomain.com",
       "issuer": "feathers",

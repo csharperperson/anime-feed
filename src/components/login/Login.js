@@ -2,6 +2,7 @@ import React from 'react';
 import client from '../../feathers';
 import 'bulma/css/bulma.css';
 import './Login.css';
+import Dashboard from '../dashboard/Dashboard';
 
 class Login extends React.Component {
     constructor(props) {
@@ -47,14 +48,18 @@ class Login extends React.Component {
                         <div className="field">
                             <label className="label">Email</label>
                             <div className="control">
-                                <input className="input" type="email" placeholder="Email"
+                                <input 
+                                className="input" type="email" 
+                                name="email" placeholder="Email"
                                 onChange={this.handleInputChange} />
                             </div>
                         </div>
                         <div className="field">
                             <label className="label">Password</label>
                             <div className="control">
-                                <input className="input" type="password" placeholder="Password"
+                                <input 
+                                className="input" type="password" 
+                                name="password" placeholder="Password"
                                 onChange={this.handleInputChange} />
                             </div>
                         </div>
