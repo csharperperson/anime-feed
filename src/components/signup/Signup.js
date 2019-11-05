@@ -2,7 +2,6 @@ import React from 'react';
 import client from '../../feathers';
 import 'bulma/css/bulma.css';
 import './Signup.css';
-import Dashboard from '../dashboard/Dashboard';
 
 class Signup extends React.Component {
     constructor(props) {
@@ -15,6 +14,7 @@ class Signup extends React.Component {
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.signup = this.signup.bind(this);
     }
 
     handleInputChange(event) {
@@ -26,7 +26,9 @@ class Signup extends React.Component {
         });
     }
 
-    signup() {
+    signup(event) {
+        event.preventDefault();
+
         const { firstName, lastName, email, password } = this.state;
 
         return client.service('users')
@@ -46,7 +48,7 @@ class Signup extends React.Component {
     render() {
         var toggleCard = this.props.toggleCard;
         return (
-            <div id="signup-card" className="card">
+            <form onSubmit={this.signup} id="signup-card" className="card">
                 <header className="card-header">
                     <p className="card-header-title">
                         Signup
@@ -91,14 +93,14 @@ class Signup extends React.Component {
                             </div>
                         </div>
                         <div className="field">
-                            <button onClick={() => this.signup()} className="button is-success is-fullwidth">
+                            <button type="submit" className="button is-success is-fullwidth">
                                 Signup
                             </button>
                         </div>
                         <a onClick={() => toggleCard('login')}>Already have an account?</a>
                     </div>
                 </div>
-            </div>
+            </form>
         )
     }
 }
