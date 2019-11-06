@@ -26,6 +26,7 @@ class Login extends React.Component {
         });
     }
 
+    // TODO: Move to parent component
     login(event) {
         event.preventDefault();
         const { email, password } = this.state;

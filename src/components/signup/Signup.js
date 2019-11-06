@@ -38,13 +38,20 @@ class Signup extends React.Component {
             .then(() => this.login());
     }
 
+    // TODO: Move to parent component
     login() {
         const { email, password } = this.state;
 
         return client.authenticate({
             strategy: 'local',
             email, password
-        }).catch(error => this.setState({ error }));
+        }).then(() => {
+            // Logged in
+            this.props.history.push('/dashboard');
+        }).catch(e => {
+            // Show login page (potentially with `e.message`)
+            console.error('Authentication error', e);
+        });
     }
 
     render() {

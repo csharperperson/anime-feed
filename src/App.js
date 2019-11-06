@@ -8,6 +8,7 @@ import {
 import './App.css';
 import AuthWrapper from './components/authwrapper/AuthWrapper'
 import Dashboard from './components/dashboard/Dashboard'
+import Home from './components/home/Home'
 
 export default function App() {
   return (
@@ -17,8 +18,11 @@ export default function App() {
           <PrivateRoute path="/dashboard">
             <Dashboard />
           </PrivateRoute>
-          <Route path="/">
+          <Route path="/login">
             <AuthWrapper />
+          </Route>
+          <Route path="/">
+            <Home />
           </Route>
         </Switch>
       </div>
@@ -36,7 +40,7 @@ function PrivateRoute({ children, ...rest }) {
         ) : (
             <Redirect
               to={{
-                pathname: "/",
+                pathname: "/login",
                 state: { from: location }
               }}
             />
