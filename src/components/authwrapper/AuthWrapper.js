@@ -19,12 +19,16 @@ class AuthWrapper extends React.Component {
     render() {
         if (this.state.activeCard === 'login') {
             return (
-                <Login toggleCard={this.toggleCard} />
+                <div id="login-container">
+                    <Login toggleCard={this.toggleCard} />
+                </div>
             )
         }
         else {
             return (
-                <Signup toggleCard={this.toggleCard} />
+                <div id="signup-container">
+                    <Signup toggleCard={this.toggleCard} />
+                </div>
             )
         }
     }

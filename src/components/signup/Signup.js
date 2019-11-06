@@ -1,5 +1,7 @@
 import React from 'react';
 import client from '../../feathers';
+import { withRouter } from "react-router-dom";
+
 import 'bulma/css/bulma.css';
 import './Signup.css';
 
@@ -105,4 +107,4 @@ class Signup extends React.Component {
     }
 }
 
-export default Signup;
+export default withRouter(Signup);

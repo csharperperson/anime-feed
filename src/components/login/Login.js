@@ -1,5 +1,7 @@
 import React from 'react';
 import client from '../../feathers';
+import { withRouter } from "react-router-dom";
+
 import 'bulma/css/bulma.css';
 import './Login.css';
 
@@ -26,15 +28,20 @@ class Login extends React.Component {
 
     login(event) {
         event.preventDefault();
-
         const { email, password } = this.state;
 
         return client.authenticate({
             strategy: 'local',
             email, password
-        }).catch(error => console.log(error));
+        }).then(() => {
+            // Logged in
+            this.props.history.push('/dashboard');
+        }).catch(e => {
+            // Show login page (potentially with `e.message`)
+            console.error('Authentication error', e);
+        });
     }
-    
+
     render() {
         var toggleCard = this.props.toggleCard;
 
@@ -50,19 +57,19 @@ class Login extends React.Component {
                         <div className="field">
                             <label className="label">Email</label>
                             <div className="control">
-                                <input 
-                                className="input" type="email" 
-                                name="email" placeholder="Email"
-                                onChange={this.handleInputChange} />
+                                <input
+                                    className="input" type="email"
+                                    name="email" placeholder="Email"
+                                    onChange={this.handleInputChange} />
                             </div>
                         </div>
                         <div className="field">
                             <label className="label">Password</label>
                             <div className="control">
-                                <input 
-                                className="input" type="password" 
-                                name="password" placeholder="Password"
-                                onChange={this.handleInputChange} />
+                                <input
+                                    className="input" type="password"
+                                    name="password" placeholder="Password"
+                                    onChange={this.handleInputChange} />
                             </div>
                         </div>
                         <div className="field">
@@ -78,4 +85,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
