@@ -9,13 +9,12 @@ export default function Home(props) {
 
     const handleSubmit = evt => {
         evt.preventDefault();
-        alert(`Submitting Email: ${email}`);
 
         return client
             .service("mailing-list")
-            .create({ email_address: email, status: 'subscribed' })
+            .create({ email_address: email, status: "subscribed" })
             .then(function(response) {
-                console.log(response);
+                this.setEmail("");
             })
             .catch(function(error) {
                 console.log(error);

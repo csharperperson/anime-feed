@@ -2,7 +2,7 @@
 const request = require("request-promise");
 const Mailchimp = require("mailchimp-api-v3");
 
-const mailchimp = new Mailchimp("apikey");
+const mailchimp = new Mailchimp("api-key");
 
 exports.MailingList = class MailingList {
   constructor(options) {
@@ -22,7 +22,7 @@ exports.MailingList = class MailingList {
 
   async create(data, params) {
     mailchimp
-      .post("/automations/5113917/emails/5113921/queue", data)
+      .post("/lists/listid/members", data)
       .then(function(results) {
         res.send(results);
       })
@@ -34,6 +34,7 @@ exports.MailingList = class MailingList {
   async update(id, data, params) {
     return data;
   }
+
 
   async patch(id, data, params) {
     return data;
