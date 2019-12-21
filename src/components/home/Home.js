@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './Home.css';
+import client from "../../feathers";
 
-export default function Home() {
+import "./Home.css";
+
+export default function Home(props) {
+    const [email, setEmail] = useState("");
+
+    const handleSubmit = evt => {
+        evt.preventDefault();
+
+        return client
+            .service("mailing-list")
+            .create({ email_address: email, status: "subscribed" })
+            .then(function(response) {
+                this.setEmail("");
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    };
+
     return (
         <section id="home-wrapper" className="hero is-info is-fullheight">
             <div className="hero-head">
@@ -12,7 +30,9 @@ export default function Home() {
                             <Link className="navbar-item" to="/">
                                 <h1>ANIME FEED</h1>
                             </Link>
-                            <span className="navbar-burger burger" data-target="navbarMenu">
+                            <span
+                                className="navbar-burger burger"
+                                data-target="navbarMenu">
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -21,7 +41,9 @@ export default function Home() {
                         <div id="navbarMenu" className="navbar-menu">
                             <div className="navbar-end">
                                 <span className="navbar-item">
-                                    <Link className="button is-white is-outlined" to="/">
+                                    <Link
+                                        className="button is-white is-outlined"
+                                        to="/">
                                         <span className="icon">
                                             <i className="fa fa-home"></i>
                                         </span>
@@ -29,7 +51,9 @@ export default function Home() {
                                     </Link>
                                 </span>
                                 <span className="navbar-item">
-                                    <a className="button is-white is-outlined" href="https://github.com/csharperperson/anime-feed/blob/master/README.md">
+                                    <a
+                                        className="button is-white is-outlined"
+                                        href="https://github.com/csharperperson/anime-feed/blob/master/README.md">
                                         <span className="icon">
                                             <i className="fa fa-book"></i>
                                         </span>
@@ -37,7 +61,9 @@ export default function Home() {
                                     </a>
                                 </span>
                                 <span className="navbar-item">
-                                    <a className="button is-white is-outlined" href="https://github.com/csharperperson/anime-feed">
+                                    <a
+                                        className="button is-white is-outlined"
+                                        href="https://github.com/csharperperson/anime-feed">
                                         <span className="icon">
                                             <i className="fa fa-github"></i>
                                         </span>
@@ -45,7 +71,9 @@ export default function Home() {
                                     </a>
                                 </span>
                                 <span className="navbar-item">
-                                    <Link className="button is-white is-outlined" to="/login">
+                                    <Link
+                                        className="button is-white is-outlined"
+                                        to="/login">
                                         <span className="icon">
                                             <i className="fa fa-superpowers"></i>
                                         </span>
@@ -60,24 +88,31 @@ export default function Home() {
             <div className="hero-body">
                 <div className="container has-text-centered">
                     <div className="column is-6 is-offset-3">
-                        <h1 className="title">
-                            Coming Soon
-                        </h1>
+                        <h1 className="title">Coming Soon</h1>
                         <h2 className="subtitle">
-                            Anime Feed is the only thing you should be using to keep track of what shows you're watching or what manga you're reading!
+                            Anime Feed is the only thing you should be using to
+                            keep track of what shows you're watching or what
+                            manga you're reading!
                         </h2>
-                        <div className="box">
+                        <form onSubmit={handleSubmit} className="box">
                             <div className="field is-grouped">
                                 <p className="control is-expanded">
-                                    <input className="input" type="text" placeholder="Enter your email" />
+                                    <input
+                                        className="input"
+                                        type="text"
+                                        value={email}
+                                        onChange={e => setEmail(e.target.value)}
+                                    />
                                 </p>
                                 <p className="control">
-                                    <a className="button is-info">
+                                    <button
+                                        type="submit"
+                                        className="button is-info">
                                         Notify Me
-                                    </a>
+                                    </button>
                                 </p>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

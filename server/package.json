@@ -42,8 +42,10 @@
     "cors": "^2.8.5",
     "feathers-mongoose": "^8.1.0",
     "helmet": "^3.21.1",
+    "mailchimp-api-v3": "^1.13.1",
     "mongodb-core": "^3.2.7",
     "mongoose": "^5.7.5",
+    "request-promise": "^4.2.5",
     "serve-favicon": "^2.5.0",
     "winston": "^3.2.1"
   },
