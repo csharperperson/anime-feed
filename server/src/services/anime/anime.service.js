@@ -4,12 +4,9 @@ const createModel = require('../../models/anime.model');
 const hooks = require('./anime.hooks');
 
 module.exports = function (app) {
-  const Model = createModel(app);
-  const paginate = app.get('paginate');
-
   const options = {
-    Model,
-    paginate
+    Model: createModel(app),
+    paginate: app.get('paginate')
   };
 
   // Initialize our service with any options it requires

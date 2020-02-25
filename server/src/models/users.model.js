@@ -1,26 +1,49 @@
-// users-model.js - A mongoose model
-//
-// See http://mongoosejs.com/docs/models.html
+// See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
+const Sequelize = require('sequelize');
+const DataTypes = Sequelize.DataTypes;
+
 module.exports = function (app) {
-  const mongooseClient = app.get('mongooseClient');
-  const users = new mongooseClient.Schema({
-  
-    email: {type: String, unique: true, lowercase: true},
-    password: { type: String },
-  
-    firstName: { type: String },
-    lastName: { type: String },
-  
-    auth0Id: { type: String },
-  
-    googleId: { type: String },
-  
-    facebookId: { type: String },
-  
+  const sequelizeClient = app.get('sequelizeClient');
+  const users = sequelizeClient.define('users', {
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
+      type: DataTypes.STRING
+    },
+    createdAt: {
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      allowNull: false
+    },
+    updatedAt: {
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      allowNull: false
+    }
   }, {
-    timestamps: true
+    hooks: {
+      beforeCount(options) {
+        options.raw = true;
+      }
+    }
   });
 
-  return mongooseClient.model('users', users, 'users');
+  // eslint-disable-next-line no-unused-vars
+  users.associate = function (models) {
+    // Define associations here
+    // See http://docs.sequelizejs.com/en/latest/docs/associations/
+  };
+
+  return users;
 };

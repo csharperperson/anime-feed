@@ -1,26 +1,51 @@
-// anime-model.js - A mongoose model
-//
-// See http://mongoosejs.com/docs/models.html
+// See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
-module.exports = function(app) {
-  const mongooseClient = app.get("mongooseClient");
-  const { Schema } = mongooseClient;
-  const anime = new Schema({
-    title: { type: String, required: true },
-    type: { type: String },
-    episodes: { type: Number },
-    picture: { type: String },
-    thumbnail: { type: String },
-    synonyms: [String],
-    sources: [String],
-    relations: [String]
+const Sequelize = require('sequelize');
+const DataTypes = Sequelize.DataTypes;
+
+module.exports = function (app) {
+  const sequelizeClient = app.get('sequelizeClient');
+  const anime = sequelizeClient.define('anime', {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    type: {
+      type: DataTypes.STRING
+    },
+    episodes: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    picture: {
+      type: DataTypes.STRING
+    },
+    thumbnail: {
+      type: DataTypes.STRING
+    },
+    synonyms: {
+      type: DataTypes.ARRAY(DataTypes.String)
+    },
+    sources: {
+      type: DataTypes.ARRAY(DataTypes.String)
+    },
+    relations: {
+      type: DataTypes.ARRAY(DataTypes.String)
+    }
+  }, {
+    hooks: {
+      beforeCount(options) {
+        options.raw = true;
+      }
+    }
   });
 
-  // This is necessary to avoid model compilation errors in watch mode
-  // see https://github.com/Automattic/mongoose/issues/1251
-  try {
-    return mongooseClient.model("anime");
-  } catch (e) {
-    return mongooseClient.model("anime", anime);
-  }
+  // eslint-disable-next-line no-unused-vars
+  anime.associate = function (models) {
+    // Define associations here
+    // See http://docs.sequelizejs.com/en/latest/docs/associations/
+  };
+
+  return anime;
 };
+

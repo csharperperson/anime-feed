@@ -18,7 +18,7 @@ const channels = require('./channels');
 
 const authentication = require('./authentication');
 
-const mongoose = require('./mongoose');
+const sequelize = require('./sequelize');
 
 const app = express(feathers());
 
@@ -38,7 +38,7 @@ app.use('/', express.static(app.get('public')));
 app.configure(express.rest());
 app.configure(socketio());
 
-app.configure(mongoose);
+app.configure(sequelize);
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);

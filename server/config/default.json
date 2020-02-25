@@ -49,5 +49,5 @@
       }
     }
   },
-  "mongodb": "mongodb://localhost:27017/animeDb"
+  "postgres": "postgres://postgres:@localhost:5432/anime_db"
 }
