@@ -27,9 +27,9 @@ export default function Home(props) {
                 <nav className="navbar">
                     <div className="container">
                         <div className="navbar-brand">
-                            <Link className="navbar-item" to="/">
+                            <span className="navbar-item">
                                 <h1>ANIME FEED</h1>
-                            </Link>
+                            </span>
                             <span
                                 className="navbar-burger burger"
                                 data-target="navbarMenu">

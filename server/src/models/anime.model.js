@@ -6,6 +6,11 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const anime = sequelizeClient.define('anime', {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false
@@ -17,20 +22,14 @@ module.exports = function (app) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    episodes: {
+      type: DataTypes.STRING
+    },
     picture: {
       type: DataTypes.STRING
     },
     thumbnail: {
       type: DataTypes.STRING
-    },
-    synonyms: {
-      type: DataTypes.ARRAY(DataTypes.String)
-    },
-    sources: {
-      type: DataTypes.ARRAY(DataTypes.String)
-    },
-    relations: {
-      type: DataTypes.ARRAY(DataTypes.String)
     }
   }, {
     hooks: {

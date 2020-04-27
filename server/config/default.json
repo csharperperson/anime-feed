@@ -49,5 +49,5 @@
       }
     }
   },
-  "postgres": "postgres://postgres:@localhost:5432/anime_db"
+  "postgres": "<database connection>"
 }
